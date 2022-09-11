@@ -15,7 +15,8 @@
 function [xp, yp, projection_distance, lambda, line_segment_len] = Projection2D(x1,y1,x2,y2,x3,y3)
 
     % Takes a line and a point, determines the projection (point with shortest distance), distance and
-    % 'parameter' of the projection.
+    % 'parameter' of the projection. 
+    % Use the orthogonal projection of vehicle position on the reference trajectories as the first reference point
     % Params:
     %      x1,y1,x2,y2: Points that make a line.
     %      x3,y3:       The point to be projected.
