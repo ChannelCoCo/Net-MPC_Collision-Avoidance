@@ -16,6 +16,8 @@ function [signed_distance_min, arclength_min, x_min, y_min, index_min ] = getSho
 
     % Finds the point on a piecewise linear curve that is closest to a
     % given point.
+    % Find the fastest route to the reference trajectoreis.
+    
     % Params:
     %     curve_x, curve_y:
     %         A polygonal chain (a.k.a. piecewise linear curve)
