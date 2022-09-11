@@ -23,10 +23,18 @@
 %       vehicle_x,vehicle_y: start point
 %       stepSize: Distance between points
 % Returns: points [x1 y1; x2 y2; ...]
+
+% Use the orthogonal projection on the reference trajectories as the first
+% reference point. 
+% This the fastest route, as this has the shortest distance to the
+% reference trajectories. 
+% The remaining reference points are computed from the first reference point.
+
 function [ ReferencePoints ] = sampleReferenceTrajectory(nSamples, referenceTrajectory, vehicle_x,vehicle_y, stepSize )
 
     ReferencePoints = zeros(nSamples,2);
     
+    % the fastest route, as this has the shortest distance
     [~, ~, x, y, TrajectoryIndex ] = getShortestDistance(referenceTrajectory(:,1),referenceTrajectory(:,2),vehicle_x,vehicle_y);
     
     nLinePieces = size(referenceTrajectory,1);
@@ -35,6 +43,7 @@ function [ ReferencePoints ] = sampleReferenceTrajectory(nSamples, referenceTraj
     % All line-segments are assumed to be longer than stepSize. Should it
     % become necessary to have short line-segments this algorithm needs to
     % be changed.
+    % The remaining reference points are computed from the first reference point.
     for i=1:nLinePieces-1
         assert(norm(referenceTrajectory(i+1,:)-referenceTrajectory(i,:),2)>stepSize);
     end
